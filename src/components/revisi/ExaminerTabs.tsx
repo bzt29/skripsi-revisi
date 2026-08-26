@@ -19,6 +19,7 @@ import {
   Copy,
   Check,
   ShieldCheck,
+  Info,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -46,6 +47,20 @@ export function ExaminerTabs({ pengujiList: initialPengujiList }: ExaminerTabsPr
 
   const [copied, setCopied] = useState(false);
   const [isReviewMode, setIsReviewMode] = useState(true);
+
+  // Professional notification toast state
+  const [toast, setToast] = useState<{
+    title: string;
+    message: string;
+    type: "success" | "info" | "warning";
+  } | null>(null);
+
+  const showToast = (title: string, message: string, type: "success" | "info" | "warning" = "success") => {
+    setToast({ title, message, type });
+    setTimeout(() => {
+      setToast(null);
+    }, 3500);
+  };
 
   // Clean old caches on mount and initialize fresh state from props
   useEffect(() => {
@@ -127,6 +142,13 @@ export function ExaminerTabs({ pengujiList: initialPengujiList }: ExaminerTabsPr
     } catch (e) {
       console.error("Gagal menyimpan reviewer overrides:", e);
     }
+
+    // Trigger subtle professional toast
+    showToast(
+      reviewerData.statusReview === "ACC" ? "Verifikasi Disetujui (ACC)" : "Catatan Review Disimpan",
+      `Keputusan verifikasi telah berhasil diperbarui dan tersimpan.`,
+      reviewerData.statusReview === "ACC" ? "success" : "info"
+    );
   };
 
   const handleResetToDefault = () => {
@@ -135,12 +157,14 @@ export function ExaminerTabs({ pengujiList: initialPengujiList }: ExaminerTabsPr
       localStorage.removeItem("skripsi_revisi_overrides");
       localStorage.removeItem("skripsi_revisi_overrides_v2");
       setPengujiList(initialPengujiList);
+      showToast("Data Direset", "Seluruh data reviewer telah dikembalikan ke kondisi default.", "info");
     }
   };
 
   const handleCopyJson = () => {
     navigator.clipboard.writeText(JSON.stringify(pengujiList, null, 2));
     setCopied(true);
+    showToast("JSON Tersalin", "Data reviewer telah disalin ke clipboard.", "info");
     setTimeout(() => setCopied(false), 2500);
   };
 
@@ -302,6 +326,35 @@ export function ExaminerTabs({ pengujiList: initialPengujiList }: ExaminerTabsPr
           poin={selectedPoinForReview.poin}
           onSaveReview={handleSaveReview}
         />
+      )}
+
+      {/* Professional Floating Toast Notification */}
+      {toast && (
+        <div className="fixed bottom-6 right-6 z-50 animate-slide-up max-w-sm w-full px-4 sm:px-0">
+          <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border border-slate-200/90 dark:border-slate-800 shadow-xl shadow-slate-900/10 rounded-2xl p-4 flex items-start gap-3">
+            <div
+              className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${
+                toast.type === "success"
+                  ? "bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800"
+                  : "bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200/60 dark:border-indigo-800"
+              }`}
+            >
+              {toast.type === "success" ? (
+                <CheckCircle2 className="w-4 h-4" />
+              ) : (
+                <Info className="w-4 h-4" />
+              )}
+            </div>
+            <div className="space-y-0.5 pr-2">
+              <h5 className="text-xs font-bold text-slate-900 dark:text-slate-100">
+                {toast.title}
+              </h5>
+              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                {toast.message}
+              </p>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

@@ -10,13 +10,11 @@ import {
   Clock,
   UserCheck,
   Save,
-  RotateCcw,
-  Sparkles,
   MessageSquare,
   Calendar,
+  Check,
 } from "lucide-react";
 import { DosenPenguji, PoinRevisi, StatusPoinRevisi } from "@/types/revisi";
-import confetti from "canvas-confetti";
 
 interface ReviewerFormModalProps {
   isOpen: boolean;
@@ -55,6 +53,7 @@ export function ReviewerFormModal({
   const [catatanReviewer, setCatatanReviewer] = useState("");
   const [diverifikasiOleh, setDiverifikasiOleh] = useState(penguji.namaLengkap);
   const [tanggalVerifikasi, setTanggalVerifikasi] = useState(getFormattedToday());
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (poin) {
@@ -64,7 +63,6 @@ export function ReviewerFormModal({
       if (currentReviewer) {
         setStatusReview(currentReviewer.statusReview || "ACC");
         
-        // If it's the placeholder text, give a helpful default on edit
         if (currentReviewer.catatanReviewer === "Menunggu pemeriksaan oleh dosen reviewer.") {
           setCatatanReviewer("Perbaikan telah diperiksa dan sesuai dengan arahan saat sidang.");
         } else {
@@ -73,7 +71,6 @@ export function ReviewerFormModal({
 
         setDiverifikasiOleh(currentReviewer.diverifikasiOleh || penguji.namaLengkap);
         
-        // Auto Date Now if empty or "-"
         if (!currentReviewer.tanggalVerifikasi || currentReviewer.tanggalVerifikasi === "-") {
           setTanggalVerifikasi(today);
         } else {
@@ -106,6 +103,8 @@ export function ReviewerFormModal({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
     const statusPoin: StatusPoinRevisi =
       statusReview === "ACC" ? "Disetujui Penguji" : "Dalam Proses";
 
@@ -116,15 +115,10 @@ export function ReviewerFormModal({
       tanggalVerifikasi: tanggalVerifikasi || getFormattedToday(),
     });
 
-    if (statusReview === "ACC") {
-      confetti({
-        particleCount: 70,
-        spread: 60,
-        origin: { y: 0.7 },
-      });
-    }
-
-    onClose();
+    setTimeout(() => {
+      setIsSubmitting(false);
+      onClose();
+    }, 150);
   };
 
   return (
@@ -273,6 +267,7 @@ export function ReviewerFormModal({
               variant="outline"
               size="sm"
               onClick={onClose}
+              disabled={isSubmitting}
               className="text-xs"
             >
               Batal
@@ -281,10 +276,20 @@ export function ReviewerFormModal({
               type="submit"
               variant="primary"
               size="sm"
-              className="text-xs gap-1.5 bg-emerald-600 hover:bg-emerald-700 border-emerald-600 shadow-sm"
+              disabled={isSubmitting}
+              className="text-xs gap-1.5 bg-indigo-600 hover:bg-indigo-700 border-indigo-600 shadow-sm"
             >
-              <Save className="w-3.5 h-3.5" />
-              <span>Simpan Review</span>
+              {isSubmitting ? (
+                <>
+                  <Check className="w-3.5 h-3.5 animate-spin" />
+                  <span>Menyimpan...</span>
+                </>
+              ) : (
+                <>
+                  <Save className="w-3.5 h-3.5" />
+                  <span>Simpan Review</span>
+                </>
+              )}
             </Button>
           </div>
         </div>
