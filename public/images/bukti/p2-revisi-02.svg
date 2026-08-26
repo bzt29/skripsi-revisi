@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="augHeader" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+
+  <!-- Top Title -->
+  <rect x="20" y="20" width="760" height="45" rx="10" fill="url(#augHeader)"/>
+  <text x="40" y="49" fill="#ffffff" font-family="system-ui, sans-serif" font-size="16" font-weight="bold">
+    Gambar 3.2 Visualisasi Sampel Transformasi Data Augmentation Citra Medis (Hal. 42)
+  </text>
+
+  <!-- 4 Transformation Cards -->
+  <!-- Card 1: Original Image -->
+  <g transform="translate(35, 90)">
+    <rect width="165" height="230" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <rect x="15" y="15" width="135" height="135" rx="8" fill="#1e293b"/>
+    <!-- Medical Brain/Chest Scan pattern -->
+    <circle cx="82" cy="82" r="45" fill="#334155" opacity="0.8"/>
+    <ellipse cx="82" cy="82" rx="35" ry="25" fill="#64748b" opacity="0.6"/>
+    <circle cx="75" cy="75" r="10" fill="#94a3b8" opacity="0.9"/>
+    <text x="82" y="175" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#0f172a" text-anchor="middle">Citra Asli</text>
+    <text x="82" y="195" font-family="system-ui, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">(224 x 224 px)</text>
+    <rect x="20" y="205" width="125" height="18" rx="4" fill="#f1f5f9"/>
+    <text x="82" y="217" font-family="system-ui, sans-serif" font-size="9" font-weight="bold" fill="#475569" text-anchor="middle">Raw Ground Truth</text>
+  </g>
+
+  <!-- Card 2: Rotation & Zoom -->
+  <g transform="translate(220, 90)">
+    <rect width="165" height="230" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <rect x="15" y="15" width="135" height="135" rx="8" fill="#1e293b"/>
+    <g transform="rotate(15 82 82) scale(1.15 1.15) translate(-12 -12)">
+      <circle cx="82" cy="82" r="45" fill="#334155" opacity="0.8"/>
+      <ellipse cx="82" cy="82" rx="35" ry="25" fill="#64748b" opacity="0.6"/>
+      <circle cx="75" cy="75" r="10" fill="#94a3b8" opacity="0.9"/>
+    </g>
+    <text x="82" y="175" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#0f172a" text-anchor="middle">Rotasi +15° &amp; Zoom</text>
+    <text x="82" y="195" font-family="system-ui, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Factor: 1.15x</text>
+    <rect x="20" y="205" width="125" height="18" rx="4" fill="#ecfdf5"/>
+    <text x="82" y="217" font-family="system-ui, sans-serif" font-size="9" font-weight="bold" fill="#059669" text-anchor="middle">Augmentasi 1</text>
+  </g>
+
+  <!-- Card 3: Horizontal Flip -->
+  <g transform="translate(405, 90)">
+    <rect width="165" height="230" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <rect x="15" y="15" width="135" height="135" rx="8" fill="#1e293b"/>
+    <g transform="translate(164 0) scale(-1 1)">
+      <circle cx="82" cy="82" r="45" fill="#334155" opacity="0.8"/>
+      <ellipse cx="82" cy="82" rx="35" ry="25" fill="#64748b" opacity="0.6"/>
+      <circle cx="75" cy="75" r="10" fill="#94a3b8" opacity="0.9"/>
+    </g>
+    <text x="82" y="175" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#0f172a" text-anchor="middle">Horizontal Flip</text>
+    <text x="82" y="195" font-family="system-ui, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">p = 0.5</text>
+    <rect x="20" y="205" width="125" height="18" rx="4" fill="#ecfdf5"/>
+    <text x="82" y="217" font-family="system-ui, sans-serif" font-size="9" font-weight="bold" fill="#059669" text-anchor="middle">Augmentasi 2</text>
+  </g>
+
+  <!-- Card 4: Contrast & Shearing -->
+  <g transform="translate(590, 90)">
+    <rect width="165" height="230" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <rect x="15" y="15" width="135" height="135" rx="8" fill="#090d16"/>
+    <g transform="skewX(10) translate(-10 0)">
+      <circle cx="82" cy="82" r="45" fill="#475569" opacity="0.9"/>
+      <ellipse cx="82" cy="82" rx="35" ry="25" fill="#94a3b8" opacity="0.8"/>
+      <circle cx="75" cy="75" r="10" fill="#e2e8f0" opacity="1.0"/>
+    </g>
+    <text x="82" y="175" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#0f172a" text-anchor="middle">Kontras &amp; Shearing</text>
+    <text x="82" y="195" font-family="system-ui, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">Brightness +/- 15%</text>
+    <rect x="20" y="205" width="125" height="18" rx="4" fill="#ecfdf5"/>
+    <text x="82" y="217" font-family="system-ui, sans-serif" font-size="9" font-weight="bold" fill="#059669" text-anchor="middle">Augmentasi 3</text>
+  </g>
+
+  <!-- Bottom Details Summary -->
+  <rect x="35" y="340" width="720" height="85" rx="10" fill="#f0fdf4" stroke="#bbf7d0"/>
+  <text x="55" y="370" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#166534">
+    Hasil Peningkatan Dataset:
+  </text>
+  <text x="55" y="395" font-family="system-ui, sans-serif" font-size="12" fill="#15803d">
+    Dataset awal 1.200 sampel berhasil diekspansi menjadi 4.800 sampel seimbang untuk mencegah overfitting dan meningkatkan generalisasi model CNN.
+  </text>
+</svg>

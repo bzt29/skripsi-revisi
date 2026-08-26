@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
+    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" rx="16" fill="url(#bgGrad2)" stroke="#334155" stroke-width="2"/>
+
+  <!-- Title -->
+  <text x="40" y="50" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="bold">
+    Gambar 3.6 Kurva Konvergensi Loss Pelatihan CNN (AdamW + Cosine Annealing)
+  </text>
+  <text x="40" y="75" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="12">
+    Rujukan Naskah: Halaman 46 | Justifikasi Pemilihan Optimizer &amp; Learning Rate Scheduler
+  </text>
+
+  <!-- Chart Area -->
+  <rect x="70" y="100" width="680" height="260" rx="10" fill="#020617" stroke="#1e293b"/>
+
+  <!-- Grid lines -->
+  <line x1="70" y1="165" x2="750" y2="165" stroke="#1e293b" stroke-dasharray="4"/>
+  <line x1="70" y1="230" x2="750" y2="230" stroke="#1e293b" stroke-dasharray="4"/>
+  <line x1="70" y1="295" x2="750" y2="295" stroke="#1e293b" stroke-dasharray="4"/>
+
+  <!-- Axis Labels -->
+  <text x="40" y="105" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">1.0</text>
+  <text x="40" y="170" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">0.7</text>
+  <text x="40" y="235" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">0.4</text>
+  <text x="40" y="300" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">0.1</text>
+  <text x="40" y="360" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">0.0</text>
+
+  <!-- Epochs -->
+  <text x="75" y="380" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">Epoch 0</text>
+  <text x="240" y="380" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">Epoch 25</text>
+  <text x="410" y="380" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">Epoch 50</text>
+  <text x="580" y="380" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">Epoch 75</text>
+  <text x="710" y="380" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">Epoch 100</text>
+
+  <!-- Curves -->
+  <!-- Training Loss (Cyan) -->
+  <path d="M 80 120 Q 180 280, 300 310 T 500 330 T 730 342" fill="none" stroke="#06b6d4" stroke-width="3" stroke-linecap="round"/>
+  <!-- Validation Loss (Indigo) -->
+  <path d="M 80 140 Q 180 290, 300 320 T 500 338 T 730 348" fill="none" stroke="#818cf8" stroke-width="3" stroke-linecap="round" stroke-dasharray="6,4"/>
+
+  <!-- Legend -->
+  <rect x="520" y="115" width="210" height="60" rx="8" fill="#0f172a" stroke="#334155"/>
+  <line x1="535" y1="135" x2="565" y2="135" stroke="#06b6d4" stroke-width="3"/>
+  <text x="575" y="139" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">Training Loss (0.042)</text>
+  <line x1="535" y1="155" x2="565" y2="155" stroke="#818cf8" stroke-width="3" stroke-dasharray="4"/>
+  <text x="575" y="159" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">Validation Loss (0.058)</text>
+
+  <!-- Bottom Badge -->
+  <rect x="70" y="400" width="680" height="35" rx="8" fill="#1e293b"/>
+  <text x="90" y="422" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="12" font-weight="bold">
+    ✓ Model mencapai konvergensi stabil tanpa overfitting dengan penurunan learning rate bertahap.
+  </text>
+</svg>
