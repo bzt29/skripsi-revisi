@@ -46,7 +46,6 @@ export function ExaminerTabs({ pengujiList: initialPengujiList }: ExaminerTabsPr
   } | null>(null);
 
   const [copied, setCopied] = useState(false);
-  const [isReviewMode, setIsReviewMode] = useState(true);
 
   // Professional notification toast state
   const [toast, setToast] = useState<{
@@ -171,14 +170,14 @@ export function ExaminerTabs({ pengujiList: initialPengujiList }: ExaminerTabsPr
   return (
     <div className="space-y-6">
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        {/* Examiner Tabs Bar & Reviewer Mode Action */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-4">
-          <TabsList className="w-full lg:w-auto">
+        {/* Examiner Tabs Bar & Action Buttons */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-4">
+          <TabsList className="w-full sm:w-auto">
             {pengujiList.map((penguji) => (
               <TabsTrigger
                 key={penguji.id}
                 value={penguji.id}
-                className="flex-1 lg:flex-initial text-xs sm:text-sm"
+                className="flex-1 sm:flex-initial text-xs sm:text-sm"
               >
                 <Award className="w-4 h-4 text-indigo-500" />
                 <span>{penguji.peran}</span>
@@ -189,45 +188,32 @@ export function ExaminerTabs({ pengujiList: initialPengujiList }: ExaminerTabsPr
             ))}
           </TabsList>
 
-          {/* Quick Action Buttons: Reviewer Form Mode, Reset & Export */}
-          <div className="flex flex-wrap items-center gap-2 self-end lg:self-center">
-            <button
-              onClick={() => setIsReviewMode(!isReviewMode)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 border ${
-                isReviewMode
-                  ? "bg-indigo-600 text-white border-indigo-600 shadow-sm"
-                  : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700"
-              }`}
-              title="Aktifkan tombol review langsung untuk dosen penguji"
-            >
-              <Edit3 className="w-3.5 h-3.5" />
-              <span>{isReviewMode ? "Mode Reviewer Aktif" : "Buka Mode Reviewer"}</span>
-            </button>
-
+          {/* Quick Action Buttons: Salin JSON & Reset */}
+          <div className="flex items-center gap-2 self-end sm:self-center">
             <button
               onClick={handleCopyJson}
-              className="p-2 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-xl text-xs font-medium border border-slate-200 dark:border-slate-700 transition-colors flex items-center gap-1"
+              className="px-3 py-1.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl text-xs font-semibold border border-slate-200 dark:border-slate-700 transition-colors flex items-center gap-1.5 shadow-xs"
               title="Salin Data Reviewer (JSON) untuk di-paste ke revisi.ts"
             >
               {copied ? (
                 <>
                   <Check className="w-3.5 h-3.5 text-emerald-500" />
-                  <span className="text-[11px] font-bold text-emerald-600 dark:text-emerald-400">Tersalin!</span>
+                  <span className="text-emerald-600 dark:text-emerald-400">Tersalin!</span>
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5" />
-                  <span className="text-[11px] hidden sm:inline">Salin JSON</span>
+                  <Copy className="w-3.5 h-3.5 text-slate-400" />
+                  <span>Salin JSON</span>
                 </>
               )}
             </button>
 
             <button
               onClick={handleResetToDefault}
-              className="p-2 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 rounded-xl text-xs border border-slate-200 dark:border-slate-700 transition-colors"
-              title="Reset ke data default"
+              className="p-1.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 rounded-xl text-xs border border-slate-200 dark:border-slate-700 transition-colors"
+              title="Reset seluruh review ke status default"
             >
-              <RotateCcw className="w-3.5 h-3.5" />
+              <RotateCcw className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -289,18 +275,18 @@ export function ExaminerTabs({ pengujiList: initialPengujiList }: ExaminerTabsPr
                 )}
               </div>
 
-              {/* Desktop Table View */}
+              {/* Desktop Table View (Tombol Beri Review Selalu Aktif) */}
               <RevisionTable
                 revisiList={penguji.daftarRevisi}
                 onOpenBukti={(poin) => handleOpenBukti(poin, penguji.namaLengkap)}
-                onReviewPoin={isReviewMode ? (poin) => handleOpenReviewForm(penguji, poin) : undefined}
+                onReviewPoin={(poin) => handleOpenReviewForm(penguji, poin)}
               />
 
-              {/* Mobile / Tablet Cards View */}
+              {/* Mobile / Tablet Cards View (Tombol Beri Review Selalu Aktif) */}
               <RevisionCard
                 revisiList={penguji.daftarRevisi}
                 onOpenBukti={(poin) => handleOpenBukti(poin, penguji.namaLengkap)}
-                onReviewPoin={isReviewMode ? (poin) => handleOpenReviewForm(penguji, poin) : undefined}
+                onReviewPoin={(poin) => handleOpenReviewForm(penguji, poin)}
               />
             </TabsContent>
           );
