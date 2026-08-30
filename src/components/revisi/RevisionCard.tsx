@@ -140,7 +140,11 @@ export function RevisionCard({
                   {poin.bukti.gambarUrl ? (
                     <>
                       <ImageIcon className="w-3.5 h-3.5" />
-                      <span>Foto</span>
+                      <span>
+                        {poin.bukti.gambarList && poin.bukti.gambarList.length > 1
+                          ? `${poin.bukti.gambarList.length} Foto`
+                          : "Foto"}
+                      </span>
                     </>
                   ) : (
                     <>

@@ -4,12 +4,18 @@ export type StatusPoinRevisi = "Sudah Diperbaiki" | "Dalam Proses" | "Disetujui 
 
 export type StatusVerifikasiPenguji = "Disetujui" | "Menunggu ACC" | "Perlu Revisi";
 
+export interface BuktiGambarItem {
+  url: string;
+  caption?: string;
+}
+
 export interface BuktiRevisi {
   tipe: "text" | "image" | "both";
   deskripsi: string;
   halaman?: string;
   gambarUrl?: string;
   gambarCaption?: string;
+  gambarList?: BuktiGambarItem[];
 }
 
 export interface ReviewerFeedback {

@@ -87,11 +87,20 @@ export function RevisionTable({
                           alt="Thumbnail"
                           className="w-full h-full object-cover group-hover/btn:scale-110 transition-transform duration-200"
                         />
+                        {poin.bukti.gambarList && poin.bukti.gambarList.length > 1 && (
+                          <span className="absolute top-0.5 right-0.5 bg-indigo-900/90 text-indigo-100 text-[9px] font-bold px-1 rounded shadow-xs">
+                            +{poin.bukti.gambarList.length}
+                          </span>
+                        )}
                         <div className="absolute inset-0 bg-indigo-950/30 opacity-0 group-hover/btn:opacity-100 transition-opacity flex items-center justify-center">
                           <ZoomIn className="w-4 h-4 text-white drop-shadow" />
                         </div>
                       </div>
-                      <span className="text-[10px] font-bold">Lihat Foto</span>
+                      <span className="text-[10px] font-bold">
+                        {poin.bukti.gambarList && poin.bukti.gambarList.length > 1
+                          ? `${poin.bukti.gambarList.length} Foto`
+                          : "Lihat Foto"}
+                      </span>
                     </button>
                   ) : (
                     <button

@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="headerGrad4" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="560" rx="16" fill="url(#bgGrad4)" stroke="#334155" stroke-width="2"/>
+
+  <!-- Top Title Banner -->
+  <rect x="25" y="25" width="850" height="60" rx="12" fill="url(#headerGrad4)"/>
+  <text x="50" y="58" fill="#ffffff" font-family="system-ui, sans-serif" font-size="18" font-weight="bold">
+    Alur Validasi &amp; Logika Bisnis Presensi Check-In dan Check-Out Pegawai
+  </text>
+  <text x="50" y="76" fill="#e0f2fe" font-family="system-ui, sans-serif" font-size="12">
+    Bab 3 Sub-bab 3.3.4 &amp; Bab 4 Sub-bab 4.2 • Validasi Geofencing, Mock Location, &amp; Face Recognition
+  </text>
+
+  <!-- Check-In Flow (Left Box) -->
+  <g transform="translate(35, 105)">
+    <rect width="400" height="420" rx="14" fill="#0f172a" stroke="#0284c7" stroke-width="1.5"/>
+    <rect x="0" y="0" width="400" height="45" rx="14" fill="#0369a1"/>
+    <text x="20" y="28" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="bold">
+      📥 ALUR VALIDASI CHECK-IN (MASUK)
+    </text>
+
+    <!-- Step 1 -->
+    <g transform="translate(15, 60)">
+      <circle cx="16" cy="16" r="14" fill="#0284c7"/>
+      <text x="16" y="21" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="bold">1</text>
+      <rect x="40" y="0" width="330" height="48" rx="8" fill="#1e293b" stroke="#334155"/>
+      <text x="52" y="20" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">Deteksi Keamanan Perangkat</text>
+      <text x="52" y="36" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">Cek status Mock Location API / Fake GPS aktif</text>
+    </g>
+
+    <!-- Step 2 -->
+    <g transform="translate(15, 120)">
+      <circle cx="16" cy="16" r="14" fill="#0284c7"/>
+      <text x="16" y="21" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="bold">2</text>
+      <rect x="40" y="0" width="330" height="48" rx="8" fill="#1e293b" stroke="#334155"/>
+      <text x="52" y="20" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">Kalkulasi Jarak Haversine</text>
+      <text x="52" y="36" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">Validasi koordinat GPS dalam radius &le; 50 meter kantor</text>
+    </g>
+
+    <!-- Step 3 -->
+    <g transform="translate(15, 180)">
+      <circle cx="16" cy="16" r="14" fill="#0284c7"/>
+      <text x="16" y="21" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="bold">3</text>
+      <rect x="40" y="0" width="330" height="48" rx="8" fill="#1e293b" stroke="#334155"/>
+      <text x="52" y="20" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">Verifikasi Face Recognition Real-Time</text>
+      <text x="52" y="36" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">Capture kamera &amp; matching Euclidean Distance</text>
+    </g>
+
+    <!-- Step 4 -->
+    <g transform="translate(15, 240)">
+      <circle cx="16" cy="16" r="14" fill="#0284c7"/>
+      <text x="16" y="21" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="bold">4</text>
+      <rect x="40" y="0" width="330" height="55" rx="8" fill="#064e3b" stroke="#059669"/>
+      <text x="52" y="20" fill="#6ee7b7" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">Pencatatan Status Kehadiran Otomatis</text>
+      <text x="52" y="34" fill="#a7f3d0" font-family="system-ui, sans-serif" font-size="10">Tepat Waktu (&lt; 08:00) / Terlambat (&gt; 08:00)</text>
+      <text x="52" y="47" fill="#a7f3d0" font-family="system-ui, sans-serif" font-size="9">Otomatis sinkron ke modul potongan gaji</text>
+    </g>
+
+    <!-- Step 5: Modal Feedback -->
+    <g transform="translate(15, 310)">
+      <rect width="370" height="90" rx="8" fill="#1e293b" stroke="#475569"/>
+      <text x="15" y="22" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">🎉 Dialog Konfirmasi Check-In Berhasil:</text>
+      <text x="15" y="42" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="10">&bull; Jam Presensi: 07:54:12 WIB</text>
+      <text x="15" y="58" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="10">&bull; Status: Tepat Waktu (Radius GPS: 18m)</text>
+      <text x="15" y="74" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="10">&bull; Face Match: 98.6% (Syed M Hafiz Firdaus)</text>
+    </g>
+  </g>
+
+  <!-- Check-Out Flow (Right Box) -->
+  <g transform="translate(465, 105)">
+    <rect width="400" height="420" rx="14" fill="#0f172a" stroke="#059669" stroke-width="1.5"/>
+    <rect x="0" y="0" width="400" height="45" rx="14" fill="#047857"/>
+    <text x="20" y="28" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="bold">
+      📤 ALUR VALIDASI CHECK-OUT (PULANG)
+    </text>
+
+    <!-- Step 1 -->
+    <g transform="translate(15, 60)">
+      <circle cx="16" cy="16" r="14" fill="#059669"/>
+      <text x="16" y="21" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="bold">1</text>
+      <rect x="40" y="0" width="330" height="48" rx="8" fill="#1e293b" stroke="#334155"/>
+      <text x="52" y="20" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">Verifikasi Status Check-In Hari Ini</text>
+      <text x="52" y="36" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">Memastikan pegawai telah melakukan Check-In sebelumnya</text>
+    </g>
+
+    <!-- Step 2 -->
+    <g transform="translate(15, 120)">
+      <circle cx="16" cy="16" r="14" fill="#059669"/>
+      <text x="16" y="21" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="bold">2</text>
+      <rect x="40" y="0" width="330" height="48" rx="8" fill="#1e293b" stroke="#334155"/>
+      <text x="52" y="20" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">Validasi Waktu Jam Kerja / Shift</text>
+      <text x="52" y="36" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">Cek apakah jam pulang normal (&ge; 17:00) atau lembur</text>
+    </g>
+
+    <!-- Step 3 -->
+    <g transform="translate(15, 180)">
+      <circle cx="16" cy="16" r="14" fill="#059669"/>
+      <text x="16" y="21" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="bold">3</text>
+      <rect x="40" y="0" width="330" height="48" rx="8" fill="#1e293b" stroke="#334155"/>
+      <text x="52" y="20" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">Verifikasi Face Recognition &amp; GPS</text>
+      <text x="52" y="36" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">Scan wajah kepulangan &amp; toleransi radius kantor</text>
+    </g>
+
+    <!-- Step 4 -->
+    <g transform="translate(15, 240)">
+      <circle cx="16" cy="16" r="14" fill="#059669"/>
+      <text x="16" y="21" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="12" font-weight="bold">4</text>
+      <rect x="40" y="0" width="330" height="55" rx="8" fill="#3b0764" stroke="#a855f7"/>
+      <text x="52" y="20" fill="#e9d5ff" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">Akumulasi Jam Kerja &amp; Lembur</text>
+      <text x="52" y="34" fill="#f3e8ff" font-family="system-ui, sans-serif" font-size="10">Durasi kerja harian dihitung otomatis</text>
+      <text x="52" y="47" fill="#f3e8ff" font-family="system-ui, sans-serif" font-size="9">Jika &gt; 8 jam, otomatis dialokasikan ke jam lembur</text>
+    </g>
+
+    <!-- Step 5: Modal Feedback -->
+    <g transform="translate(15, 310)">
+      <rect width="370" height="90" rx="8" fill="#1e293b" stroke="#475569"/>
+      <text x="15" y="22" fill="#34d399" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">🎉 Dialog Konfirmasi Check-Out Berhasil:</text>
+      <text x="15" y="42" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="10">&bull; Jam Pulang: 17:15:30 WIB</text>
+      <text x="15" y="58" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="10">&bull; Total Durasi Kerja: 9 Jam 21 Menit</text>
+      <text x="15" y="74" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="10">&bull; Lembur Terverifikasi: 1 Jam 15 Menit</text>
+    </g>
+  </g>
+</svg>

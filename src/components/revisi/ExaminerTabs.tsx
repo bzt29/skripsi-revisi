@@ -28,7 +28,7 @@ interface ExaminerTabsProps {
   pengujiList: DosenPenguji[];
 }
 
-const STORAGE_KEY = "skripsi_revisi_reviews_v3";
+const STORAGE_KEY = "skripsi_revisi_reviews_v5";
 
 export function ExaminerTabs({ pengujiList: initialPengujiList }: ExaminerTabsProps) {
   const [pengujiList, setPengujiList] = useState<DosenPenguji[]>(initialPengujiList);
@@ -66,6 +66,8 @@ export function ExaminerTabs({ pengujiList: initialPengujiList }: ExaminerTabsPr
     try {
       localStorage.removeItem("skripsi_revisi_overrides");
       localStorage.removeItem("skripsi_revisi_overrides_v2");
+      localStorage.removeItem("skripsi_revisi_reviews_v3");
+      localStorage.removeItem("skripsi_revisi_reviews_v4");
 
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
