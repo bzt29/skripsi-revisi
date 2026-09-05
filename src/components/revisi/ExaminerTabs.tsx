@@ -37,7 +37,7 @@ interface ExaminerTabsProps {
   pengujiList: DosenPenguji[];
 }
 
-const STORAGE_KEY = "skripsi_revisi_reviews_v5";
+const STORAGE_KEY = "skripsi_revisi_reviews_v6";
 
 export function ExaminerTabs({ pengujiList: initialPengujiList }: ExaminerTabsProps) {
   const [pengujiList, setPengujiList] = useState<DosenPenguji[]>(initialPengujiList);
@@ -77,13 +77,35 @@ export function ExaminerTabs({ pengujiList: initialPengujiList }: ExaminerTabsPr
   useEffect(() => {
     let isMounted = true;
 
-    // Load from LocalStorage first for instant render
+    // Load from LocalStorage first for instant render, merging fresh static content
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const parsed: DosenPenguji[] = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          setPengujiList(parsed);
+          const mergedWithFreshContent = initialPengujiList.map((penguji) => {
+            const savedPenguji = parsed.find((p) => p.id === penguji.id);
+            if (!savedPenguji) return penguji;
+
+            const updatedRevisi = penguji.daftarRevisi.map((poin) => {
+              const savedPoin = savedPenguji.daftarRevisi?.find((r) => r.id === poin.id);
+              if (savedPoin) {
+                return {
+                  ...poin, // Preserve latest code definitions for bukti, tindakan, dll.
+                  status: savedPoin.status || poin.status,
+                  reviewer: savedPoin.reviewer || poin.reviewer,
+                };
+              }
+              return poin;
+            });
+
+            return {
+              ...penguji,
+              statusVerifikasi: savedPenguji.statusVerifikasi || penguji.statusVerifikasi,
+              daftarRevisi: updatedRevisi,
+            };
+          });
+          setPengujiList(mergedWithFreshContent);
         }
       }
     } catch (e) {

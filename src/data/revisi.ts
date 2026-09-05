@@ -100,16 +100,36 @@ export const dataRevisi: DataRevisiSkripsi = {
           catatanRevisi:
             "Activity diagram diperbaiki: Perbaiki Activity Diagram alur presensi masuk/pulang, deteksi fake GPS, dan perhitungan penggajian pegawai agar swimlane interaksi antara Pegawai, Sistem/API, dan Admin Pusat terpetakan secara jelas dan runtut.",
           tindakanPerbaikan:
-            "Telah merevisi Activity Diagram alur proses presensi dan kalkulasi penggajian (Gambar 3.5 & 3.6) pada Bab 3 Sub-bab 3.3.4 dengan swimlane aktor Pegawai, Admin Cabang/HRD, Admin Pusat, sistem validasi Haversine, dan modul penggajian.",
+            "Telah merevisi dan menyempurnakan Activity Diagram pada Bab 3 Sub-bab 3.3.4 menjadi 2 kelompok utama (3 diagram): (1) Kelompok Penggajian: Activity Diagram Alur Proses Penggajian Pegawai dan Activity Diagram Alur Periode Penggajian; (2) Kelompok Presensi: Activity Diagram Alur Validasi Presensi (Masuk & Pulang) lengkap dengan validasi Haversine geofencing, deteksi mock location, dan verifikasi face recognition.",
           halamanTerkait: "Halaman 46 - 51",
           status: "Dalam Proses",
           bukti: {
             tipe: "both",
             deskripsi:
-              "Gambar 3.5 & 3.6 Activity Diagram Alur Penggajian & Validasi Presensi Wajah dan Lokasi telah disempurnakan.",
-            halaman: "Hal. 48",
-            gambarUrl: "/images/bukti/act-penggajian.jpeg",
-            gambarCaption: "Gambar 3.5 & 3.6 Activity Diagram Alur Penggajian & Validasi Presensi",
+              "Activity Diagram telah diperbaiki dan dibagi menjadi 2 kelompok utama (total 3 diagram): Kelompok 1 Penggajian (Alur Proses Penggajian & Alur Periode Penggajian) serta Kelompok 2 Presensi (Alur Validasi Presensi Masuk & Pulang).",
+            halaman: "Hal. 46 - 51",
+            gambarUrl: "/images/bukti/penggajian-iniact.png",
+            gambarCaption: "Activity Diagram Sistem Presensi & Penggajian (2 Kelompok, 3 Diagram)",
+            gambarList: [
+              {
+                url: "/images/bukti/penggajian-iniact.png",
+                caption: "Activity Diagram Alur Proses Penggajian Pegawai PT MJU",
+                kelompok: "Penggajian",
+                label: "Alur Proses Penggajian",
+              },
+              {
+                url: "/images/bukti/periode-iniact.png",
+                caption: "Activity Diagram Alur Periode Penggajian PT MJU",
+                kelompok: "Penggajian",
+                label: "Alur Periode Penggajian",
+              },
+              {
+                url: "/images/bukti/presensi.drawio.png",
+                caption: "Activity Diagram Alur Validasi Presensi Masuk & Pulang (Haversine & Face Recognition)",
+                kelompok: "Presensi",
+                label: "Alur Validasi Presensi",
+              },
+            ],
           },
           reviewer: {
             diverifikasiOleh: "Dede Rizal Nursamsi, S.T., M.KOM",

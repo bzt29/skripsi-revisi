@@ -101,6 +101,12 @@ export function RevisionTable({
                           ? `${poin.bukti.gambarList.length} Foto`
                           : "Lihat Foto"}
                       </span>
+                      {poin.bukti.gambarList &&
+                        new Set(poin.bukti.gambarList.map((g) => g.kelompok).filter(Boolean)).size > 1 && (
+                          <span className="text-[9px] font-semibold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-1.5 py-0.2 rounded border border-indigo-200/50 dark:border-indigo-800/50">
+                            {new Set(poin.bukti.gambarList.map((g) => g.kelompok).filter(Boolean)).size} Kelompok
+                          </span>
+                        )}
                     </button>
                   ) : (
                     <button

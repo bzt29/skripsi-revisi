@@ -7,6 +7,8 @@ export type StatusVerifikasiPenguji = "Disetujui" | "Menunggu ACC" | "Perlu Revi
 export interface BuktiGambarItem {
   url: string;
   caption?: string;
+  kelompok?: string;
+  label?: string;
 }
 
 export interface BuktiRevisi {

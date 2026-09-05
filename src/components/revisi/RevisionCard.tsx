@@ -142,7 +142,11 @@ export function RevisionCard({
                       <ImageIcon className="w-3.5 h-3.5" />
                       <span>
                         {poin.bukti.gambarList && poin.bukti.gambarList.length > 1
-                          ? `${poin.bukti.gambarList.length} Foto`
+                          ? `${poin.bukti.gambarList.length} Foto${
+                              new Set(poin.bukti.gambarList.map((g) => g.kelompok).filter(Boolean)).size > 1
+                                ? ` (${new Set(poin.bukti.gambarList.map((g) => g.kelompok).filter(Boolean)).size} Kelompok)`
+                                : ""
+                            }`
                           : "Foto"}
                       </span>
                     </>
